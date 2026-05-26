@@ -1,0 +1,847 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<title>GB Botines - Catálogo Premium 3D</title>
+				<style>
+					:root {
+					--color-principal: #00ff66;
+					--color-principal-brillo: #26ff7d;
+					--color-alerta: #ff3333;
+					--color-fondo: linear-gradient(135deg, #0a0a0a 0%, #141414 100%);
+					--color-tarjeta: #1c1c1c;
+					--color-borde-3d: #2d2d2d;
+					--sombra-3d: 0 8px 0 #000000, 0 15px 20px rgba(0,0,0,0.7);
+					--sombra-hover-3d: 0 14px 0 #000000, 0 20px 30px rgba(0,255,102,0.15);
+					}
+
+					html {
+					scroll-behavior: smooth;
+					scroll-padding-top: 130px;
+					}
+
+					body {
+					font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+					background: var(--color-fondo);
+					background-attachment: fixed;
+					color: #ffffff;
+					margin: 0;
+					padding: 0;
+					text-align: center;
+					-webkit-font-smoothing: antialiased;
+					}
+
+					/* BARRA DE ALERTA/URGENCIA SUPERIOR */
+					.barra-alerta {
+					position: fixed;
+					top: 0;
+					left: 0;
+					width: 100%;
+					background: linear-gradient(90deg, #b30000 0%, var(--color-alerta) 50%, #b30000 100%);
+					color: #ffffff;
+					font-size: 0.9rem;
+					font-weight: bold;
+					text-transform: uppercase;
+					letter-spacing: 1px;
+					padding: 8px 0;
+					z-index: 1001;
+					box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					gap: 10px;
+					}
+					.icono-alerta {
+					animation: parpadeo 1s infinite alternate;
+					}
+					@keyframes parpadeo {
+					0% { opacity: 0.3; transform: scale(0.9); }
+					100% { opacity: 1; transform: scale(1.1); }
+					}
+
+					/* BARRA DE NAVEGACIÓN FLOTANTE 3D */
+					.navbar-flotante {
+					position: fixed;
+					top: 34px;
+					left: 0;
+					width: 100%;
+					background: rgba(10, 10, 10, 0.95);
+					backdrop-filter: blur(10px);
+					border-bottom: 3px solid var(--color-principal);
+					box-shadow: 0 5px 20px rgba(0,0,0,0.8);
+					z-index: 1000;
+					display: flex;
+					justify-content: center;
+					gap: 12px;
+					padding: 12px 0;
+					transition: top 0.3s;
+					}
+
+					.enlace-nav {
+					color: #ffffff;
+					text-decoration: none;
+					font-weight: bold;
+					font-size: 0.9rem;
+					padding: 8px 14px;
+					background-color: #222222;
+					border-radius: 6px;
+					text-transform: uppercase;
+					letter-spacing: 0.5px;
+					box-shadow: 0 3px 0 #000000;
+					transition: transform 0.1s, box-shadow 0.1s, background-color 0.2s, color 0.2s;
+					}
+					.enlace-nav:hover { color: var(--color-principal); background-color: #2a2a2a; }
+					.enlace-nav:active { transform: translateY(2px); box-shadow: 0 1px 0 #000000; }
+
+					/* ENCABEZADO */
+					header {
+					background: linear-gradient(180deg, #000000 0%, #0f0f0f 100%);
+					padding: 50px 20px;
+					margin-top: 95px;
+					border-bottom: 4px solid var(--color-principal);
+					box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+					}
+
+					header h1 {
+					color: var(--color-principal);
+					margin: 0;
+					font-size: 2.8rem;
+					font-weight: 900;
+					letter-spacing: 3px;
+					display: inline-block;
+					cursor: default;
+					text-shadow: 1px 1px 0px #00993d, 2px 2px 0px #008033, 3px 3px 0px #006629, 4px 4px 6px rgba(0,0,0,0.8);
+					transition: transform 0.3s ease, text-shadow 0.3s ease, color 0.3s ease;
+					}
+					header h1:hover {
+					color: var(--color-principal-brillo);
+					transform: translateY(-5px) scale(1.02);
+					text-shadow: 1px 1px 0px #00cc52, 2px 2px 0px #00b347, 3px 3px 0px #00993d, 4px 4px 0px #008033, 5px 5px 0px #006629, 6px 6px 12px rgba(0,255,102,0.3);
+					}
+
+					header p {
+					margin: 15px 0 0 0;
+					color: #888888;
+					font-size: 1.1rem;
+					font-weight: 500;
+					letter-spacing: 1px;
+					}
+
+					/* CONTENEDOR DE BLOQUES */
+					.seccion-bloque {
+					max-width: 1200px;
+					margin: 0 auto;
+					padding: 60px 20px;
+					border-bottom: 1px solid #1f1f1f;
+					}
+					.seccion-bloque:last-of-type { border-bottom: none; }
+
+					/* BANNER DESTACADO 3D */
+					.banner-destacado {
+					background: linear-gradient(135deg, #001f5c 0%, #0044cc 100%);
+					border-radius: 16px;
+					padding: 40px;
+					margin: 20px 0;
+					display: flex;
+					justify-content: space-around;
+					align-items: center;
+					flex-wrap: wrap;
+					border: 1px solid #1a66ff;
+					box-shadow: 0 8px 0 #001a4d, 0 15px 25px rgba(0, 68, 204, 0.3);
+					transition: transform 0.2s, box-shadow 0.2s;
+					}
+					.banner-destacado:hover {
+					transform: translateY(-2px);
+					box-shadow: 0 10px 0 #001a4d, 0 20px 30px rgba(0, 68, 204, 0.4);
+					}
+					.banner-texto { text-align: left; max-width: 650px; }
+					.banner-texto h2 { margin: 0; color: #fff; font-size: 2.1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.6); }
+					.banner-texto p { margin: 15px 0 0 0; color: #e2e8f0; font-size: 1.15rem; line-height: 1.6; }
+
+					.banner-boton {
+					background-color: var(--color-principal);
+					color: #000000;
+					padding: 18px 36px;
+					border-radius: 8px;
+					text-decoration: none;
+					font-weight: bold;
+					font-size: 1.15rem;
+					box-shadow: 0 5px 0 #00993d, 0 8px 15px rgba(0,0,0,0.5);
+					transition: transform 0.1s, box-shadow 0.1s;
+					}
+					.banner-boton:hover { background-color: var(--color-principal-brillo); }
+					.banner-boton:active { transform: translateY(4px); box-shadow: 0 1px 0 #00993d, 0 3px 5px rgba(0,0,0,0.5); }
+
+					/* TÍTULOS DE SECCIÓN */
+					.titulo-seccion {
+					text-align: left;
+					border-left: 5px solid var(--color-principal);
+					padding-left: 15px;
+					margin-bottom: 40px;
+					font-size: 1.7rem;
+					font-weight: bold;
+					letter-spacing: 1px;
+					text-transform: uppercase;
+					text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+					}
+
+					/* SCRIPT DE FILTROS - BOTONES (NUEVO OPCIÓN 2) */
+					.contenedor-filtros {
+					display: flex;
+					justify-content: flex-start;
+					gap: 12px;
+					margin-bottom: 35px;
+					flex-wrap: wrap;
+					}
+					.btn-filtro {
+					background-color: #1a1a1a;
+					color: #ffffff;
+					border: 1px solid var(--color-borde-3d);
+					padding: 10px 22px;
+					border-radius: 8px;
+					font-weight: bold;
+					font-size: 0.95rem;
+					cursor: pointer;
+					text-transform: uppercase;
+					letter-spacing: 0.5px;
+					box-shadow: 0 4px 0 #000000;
+					transition: all 0.2s ease;
+					}
+					.btn-filtro:hover {
+					border-color: var(--color-principal);
+					color: var(--color-principal);
+					}
+					.btn-filtro.activo {
+					background-color: #222222;
+					color: var(--color-principal);
+					border-color: var(--color-principal);
+					box-shadow: 0 2px 0 #000000, 0 0 10px rgba(0, 255, 102, 0.2);
+					transform: translateY(2px);
+					}
+
+					/* GRID INFORMACIÓN */
+					.grid-info { display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
+					.tarjeta-informativa {
+					background-color: var(--color-tarjeta);
+					border: 1px solid var(--color-borde-3d);
+					border-radius: 14px;
+					padding: 30px;
+					flex: 1;
+					min-width: 280px;
+					box-shadow: var(--sombra-3d);
+					transition: transform 0.3s, box-shadow 0.3s;
+					text-align: left;
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+					}
+					.tarjeta-informativa:hover { transform: translateY(-5px); box-shadow: 0 12px 0 #000000, 0 18px 25px rgba(0,0,0,0.8); }
+					.tarjeta-informativa h4 { color: var(--color-principal); margin: 0 0 15px 0; font-size: 1.3rem; text-transform: uppercase; }
+					.tarjeta-informativa p { margin: 0 0 15px 0; color: #cccccc; font-size: 1rem; line-height: 1.6; }
+
+					/* BOTÓN DE COPIAR ALIAS 3D */
+					.boton-copiar {
+					background-color: #333333;
+					color: #ffffff;
+					border: none;
+					padding: 12px;
+					border-radius: 6px;
+					font-weight: bold;
+					font-size: 0.95rem;
+					cursor: pointer;
+					margin-top: auto;
+					box-shadow: 0 4px 0 #111111, 0 6px 10px rgba(0,0,0,0.3);
+					transition: transform 0.1s, box-shadow 0.1s, background-color 0.2s;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					gap: 8px;
+					}
+					.boton-copiar:hover { background-color: #444444; }
+					.boton-copiar:active { transform: translateY(3px); box-shadow: 0 1px 0 #111111, 0 3px 5px rgba(0,0,0,0.3); }
+					.boton-copiar.copiado {
+					background-color: var(--color-principal);
+					color: #000000;
+					box-shadow: 0 4px 0 #00993d, 0 6px 10px rgba(0,255,102,0.2);
+					}
+
+					/* PRODUCTOS EN FILAS VERTICALES */
+					.contenedor-productos-vertical { display: flex; flex-direction: column; gap: 50px; margin-top: 20px; }
+
+					.fila-producto-3d {
+					background-color: var(--color-tarjeta);
+					border: 1px solid var(--color-borde-3d);
+					border-radius: 20px;
+					padding: 35px;
+					box-shadow: var(--sombra-3d);
+					display: flex;
+					align-items: center;
+					gap: 55px;
+					text-align: left;
+					transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+					scroll-margin-top: 130px;
+					opacity: 1;
+					}
+					.fila-producto-3d.oculto {
+					display: none;
+					opacity: 0;
+					}
+					.fila-producto-3d:hover { transform: translateY(-5px); border-color: var(--color-principal); box-shadow: var(--sombra-hover-3d); }
+					.fila-producto-3d.invertida { flex-direction: row-reverse; }
+
+					.columna-imagen { flex: 1; max-width: 450px; display: flex; justify-content: center; }
+
+					/* ESTILO INTERACTIVO PARA RECORES PNG TRANSPARENTES */
+					.imagen-producto-vertical {
+					width: 100%;
+					height: 380px;
+					object-fit: contain;
+					cursor: zoom-in;
+					transition: transform 0.2s ease, filter 0.2s ease;
+					}
+					.imagen-producto-vertical:hover {
+					transform: scale(1.06);
+					filter: drop-shadow(0 0 12px rgba(0, 255, 102, 0.3));
+					}
+
+					.columna-info { flex: 1.2; display: flex; flex-direction: column; justify-content: center; }
+					.columna-info h3 { margin: 0 0 15px 0; font-size: 1.9rem; font-weight: bold; color: #ffffff; border-bottom: 2px solid #2d2d2d; padding-bottom: 10px; }
+					.columna-info .descripcion { color: #b3b3b3; font-size: 1.1rem; line-height: 1.6; margin: 0 0 25px 0; text-align: left; }
+					.contenedor-precios-vertical { margin-bottom: 25px; }
+					.columna-info .precio-antes { color: #666666; text-decoration: line-through; font-size: 1.1rem; margin: 0; }
+					.columna-info .precio { color: var(--color-principal); font-size: 2.2rem; font-weight: 900; margin: 5px 0 0 0; text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
+
+					.boton-wsp-vertical {
+					display: inline-block;
+					align-self: flex-start;
+					background-color: #25d366;
+					color: #000000;
+					text-decoration: none;
+					padding: 16px 40px;
+					border-radius: 8px;
+					font-weight: bold;
+					font-size: 1.1rem;
+					box-shadow: 0 4px 0 #1ebd56, 0 6px 10px rgba(0,0,0,0.4);
+					transition: transform 0.1s, box-shadow 0.1s, background-color 0.2s;
+					}
+					.boton-wsp-vertical:hover { background-color: #26e671; }
+					.boton-wsp-vertical:active { transform: translateY(3px); box-shadow: 0 1px 0 #1ebd56, 0 3px 5px rgba(0,0,0,0.4); }
+
+					/* ESTILOS INTERACTIVOS PARA LA TABLA DE TALLES */
+					.seccion-talles {
+					display: flex;
+					gap: 40px;
+					align-items: stretch;
+					flex-wrap: wrap;
+					scroll-margin-top: 130px;
+					}
+					.columna-tabla {
+					flex: 1;
+					min-width: 320px;
+					background-color: var(--color-tarjeta);
+					border: 1px solid var(--color-borde-3d);
+					border-radius: 16px;
+					padding: 25px;
+					box-shadow: var(--sombra-3d);
+					}
+					.tabla-medidas {
+					width: 100%;
+					border-collapse: collapse;
+					text-align: center;
+					}
+					.tabla-medidas th {
+					background-color: #111111;
+					color: var(--color-principal);
+					font-weight: bold;
+					text-transform: uppercase;
+					padding: 14px;
+					font-size: 1rem;
+					border-bottom: 2px solid var(--color-borde-3d);
+					letter-spacing: 1px;
+					}
+					.tabla-medidas td {
+					padding: 12px;
+					font-size: 1.1rem;
+					color: #ffffff;
+					border-bottom: 1px solid #2a2a2a;
+					}
+					.tabla-medidas tr:last-child td { border-bottom: none; }
+					.tabla-medidas tr:hover td {
+					background-color: #252525;
+					color: var(--color-principal);
+					font-weight: bold;
+					}
+					.columna-instrucciones {
+					flex: 1;
+					min-width: 320px;
+					background-color: var(--color-tarjeta);
+					border: 1px solid var(--color-borde-3d);
+					border-radius: 16px;
+					padding: 30px;
+					box-shadow: var(--sombra-3d);
+					text-align: left;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					}
+					.columna-instrucciones h4 {
+					color: var(--color-principal);
+					margin: 0 0 20px 0;
+					font-size: 1.3rem;
+					text-transform: uppercase;
+					}
+					.lista-pasos { margin: 0; padding-left: 20px; color: #b3b3b3; }
+					.lista-pasos li { margin-bottom: 15px; line-height: 1.6; font-size: 1.05rem; }
+					.lista-pasos strong { color: #ffffff; }
+
+					/* ESTILOS PARA PREGUNTAS FRECUENTES (FAQ) */
+					.contenedor-faq {
+					display: flex;
+					flex-direction: column;
+					gap: 15px;
+					text-align: left;
+					}
+					.item-faq {
+					background-color: var(--color-tarjeta);
+					border: 1px solid var(--color-borde-3d);
+					border-radius: 10px;
+					padding: 5px 10px;
+					box-shadow: 0 4px 0 #000000;
+					transition: border-color 0.2s;
+					}
+					.item-faq[open] { border-color: var(--color-principal); }
+					.item-faq summary {
+					font-size: 1.1rem;
+					font-weight: bold;
+					padding: 15px;
+					cursor: pointer;
+					color: #ffffff;
+					list-style: none;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					}
+					.item-faq summary::-webkit-details-marker { display: none; }
+					.item-faq summary::after { content: '➕'; font-size: 0.9rem; transition: transform 0.2s; }
+					.item-faq[open] summary::after { content: '➖'; }
+					.item-faq p {
+					padding: 0 15px 15px 15px;
+					margin: 0;
+					color: #b3b3b3;
+					line-height: 1.6;
+					font-size: 1rem;
+					border-top: 1px solid #2d2d2d;
+					padding-top: 15px;
+					}
+
+					/* INTERFAZ MODAL LIGHTBOX (PANTALLA COMPLETA) */
+					.modal-lightbox {
+					position: fixed;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					background-color: rgba(0, 0, 0, 0.93);
+					z-index: 2000;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					opacity: 0;
+					pointer-events: none;
+					transition: opacity 0.3s ease;
+					}
+					.modal-lightbox.activo { opacity: 1; pointer-events: auto; }
+					.imagen-modal-gigante {
+					max-width: 90%;
+					max-height: 90vh;
+					border-radius: 10px;
+					box-shadow: 0 0 30px rgba(0,255,102,0.2);
+					border: 2px solid var(--color-principal);
+					transform: scale(0.95);
+					transition: transform 0.3s ease;
+					object-fit: contain;
+					}
+					.modal-lightbox.activo .imagen-modal-gigante { transform: scale(1); }
+					.boton-cerrar-modal {
+					position: absolute;
+					top: 25px;
+					right: 35px;
+					color: #ffffff;
+					font-size: 3rem;
+					font-weight: bold;
+					cursor: pointer;
+					transition: color 0.2s, transform 0.2s;
+					user-select: none;
+					}
+					.boton-cerrar-modal:hover { color: var(--color-principal); transform: scale(1.1); }
+
+					@media (max-width: 850px) {
+					.barra-alerta { font-size: 0.75rem; padding: 6px 4px; }
+					.navbar-flotante { top: 27px; gap: 5px; padding: 10px 2px; }
+					.enlace-nav { font-size: 0.65rem; padding: 5px 6px; border-radius: 4px; }
+					header { margin-top: 90px; padding: 40px 15px; }
+					header h1 { font-size: 2.1rem; }
+					.contenedor-filtros { justify-content: center; gap: 8px; margin-bottom: 25px; }
+					.btn-filtro { font-size: 0.8rem; padding: 8px 14px; }
+					.fila-producto-3d, .fila-producto-3d.invertida { flex-direction: column; text-align: center; padding: 25px; gap: 30px; scroll-margin-top: 115px; }
+					.columna-info .descripcion { text-align: center; }
+					.boton-wsp-vertical { align-self: center; width: 80%; text-align: center; }
+					.columna-imagen { max-width: 100%; }
+					.imagen-producto-vertical { height: 300px; width: 100%; }
+					.seccion-talles { flex-direction: column; gap: 25px; scroll-margin-top: 115px; }
+					.boton-cerrar-modal { top: 15px; right: 20px; font-size: 2.5rem; }
+					}
+
+					@media (max-width: 390px) {
+					.navbar-flotante { gap: 3px; }
+					.enlace-nav { font-size: 0.6rem; padding: 4px 5px; }
+					}
+
+					footer {
+					margin-top: 40px;
+					background: #000000;
+					padding: 40px 20px;
+					border-top: 2px solid var(--color-borde-3d);
+					color: #666666;
+					font-size: 0.95rem;
+					box-shadow: inset 0 10px 20px rgba(0,0,0,0.8);
+					}
+					footer a { color: var(--color-principal); text-decoration: none; font-weight: bold; }
+					footer a:hover { color: var(--color-principal-brillo); }
+				</style>
+			</head>
+	<body>
+
+		<div class="barra-alerta">
+			<span class="icono-alerta">⏰</span>
+			<span>¡PRÓXIMA TANDA DE ENCARGOS! CERRAMOS PEDIDOS ESTE DOMINGO</span>
+		</div>
+
+		<nav class="navbar-flotante">
+			<a href="#termica" class="enlace-nav">❄️ Térmicas</a>
+			<a href="#guantes" class="enlace-nav">🧤 Guantes</a>
+			<a href="#botines" class="enlace-nav">👟 Botines</a>
+			<a href="#combo" class="enlace-nav">🔥 Combos</a>
+			<a href="#guia-talles" class="enlace-nav">📏 Talles</a>
+		</nav>
+
+		<header>
+			<h1>GB BOTINES & INDUMENTARIA</h1>
+			<p>Catálogo Digital Oficial - General Belgrano</p>
+		</header>
+
+		<div class="seccion-bloque">
+			<div class="banner-destacado">
+				<div class="banner-texto">
+					<h2>🔥 ¡PROMO IMPERDIBLE DE INVIERNO!</h2>
+					<p>Llevate el Combo Invernal (Térmica + Guantes + Medias) con descuento especial de cierre de stock. No pases frío al entrenar.</p>
+				</div>
+				<a href="https://wa.me/5492241415211?text=Hola!%20Me%20interesa%20aprovechar%20la%20Promo%20Invernal%20de%20%2429000" target="_blank" class="banner-boton">¡Quiero el Combo!</a>
+			</div>
+		</div>
+
+		<div class="seccion-bloque">
+			<div class="titulo-seccion">¿Cómo comprar tus productos?</div>
+			<div class="grid-info">
+				<div class="tarjeta-informativa">
+					<h4>1. Elegí y Consultá</h4>
+					<p>Mirá nuestro catálogo acá abajo y tocá el botón verde del producto que querés para abrir nuestro chat de WhatsApp con tu consulta armada al instante.</p>
+				</div>
+				<div class="tarjeta-informativa">
+					<h4>2. Coordinamos Talle</h4>
+					<p>Te confirmamos stock al toque. Si el producto elegido es bajo pedido, reservás tu talle con una seña inicial del 50% mediante Mercado Pago o transferencia bancaria.</p>
+				</div>
+				<div class="tarjeta-informativa">
+					<h4>3. Retiro en el Pueblo</h4>
+					<p>Las entregas de pedidos coordinados llegan a General Belgrano los días martes y miércoles. El saldo restante del producto lo abonás mano a mano al momento de retirar.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="seccion-bloque">
+			<div class="titulo-seccion">Productos en Promoción</div>
+
+			<div class="contenedor-filtros">
+				<button class="btn-filtro activo" onclick="filtrarCategoria('todos', this)">⚡ Todos</button>
+				<button class="btn-filtro" onclick="filtrarCategoria('botines', this)">👟 Botines</button>
+				<button class="btn-filtro" onclick="filtrarCategoria('indumentaria', this)">❄️ Indumentaria</button>
+				<button class="btn-filtro" onclick="filtrarCategoria('combos', this)">🔥 Combos</button>
+			</div>
+
+			<div class="contenedor-productos-vertical">
+
+				<div class="fila-producto-3d" id="termica" data-categoria="indumentaria">
+					<div class="columna-imagen">
+						<img src="https://i.postimg.cc/9MKybs2b/termica-removebg-preview.png" class="imagen-producto-vertical" alt="Remera Térmica" onclick="abrirLightbox('https://i.postimg.cc/SQDQbm8R/termica.jpg')">
+                </div>
+					<div class="columna-info">
+						<h3>Remera Térmica Manga Larga</h3>
+						<p class="descripcion">Indumentaria de alto rendimiento GDO Primera Piel - Tecnología HEAT. Fabricada en poliéster premium combinado con elastano de máxima flexibilidad, ideal para retener el calor corporal y mejorar drásticamente el rendimiento en tus entrenamientos en climas extremos.</p>
+						<div class="contenedor-precios-vertical">
+							<p class="precio-antes">$21.000</p>
+							<p class="precio">$17.000</p>
+						</div>
+						<a href="https://wa.me/5492241415211?text=Hola!%20Quiero%20encargar%20la%20remera%20termica%20de%20%2417000" target="_blank" class="boton-wsp-vertical">Pedir por WhatsApp</a>
+					</div>
+				</div>
+
+				<div class="fila-producto-3d invertida" id="guantes" data-categoria="indumentaria">
+					<div class="columna-imagen">
+						<img src="https://i.postimg.cc/14x4VQSP/guantes-removebg-preview.png" class="imagen-producto-vertical" alt="Guantes Térmicos" onclick="abrirLightbox('https://i.postimg.cc/sgtDHKWT/guantes.jpg')">
+                </div>
+					<div class="columna-info">
+						<h3>Guantes Térmicos Primera Piel</h3>
+						<p class="descripcion">Alpina Performance Gear - Línea Sky Nieve Frío Polar. Diseñados específicamente con un ajuste anatomico perfecto que se amolda a la forma de la mano, brindando una excelente retención del calor sin sacrificar ligereza ni flexibilidad al moverte.</p>
+						<div class="contenedor-precios-vertical">
+							<p class="precio-antes">$11.500</p>
+							<p class="precio">$9.500</p>
+						</div>
+						<a href="https://wa.me/5492241415211?text=Hola!%20Quiero%20encargar%20los%20guantes%20termicos%20de%20%249500" target="_blank" class="boton-wsp-vertical">Pedir por WhatsApp</a>
+					</div>
+				</div>
+
+				<div class="fila-producto-3d" id="botines" data-categoria="botines">
+					<div class="columna-imagen">
+						<img src="https://i.postimg.cc/7Z2dNykw/botines-removebg-preview.png" class="imagen-producto-vertical" alt="Botines Freedom" onclick="abrirLightbox('https://i.postimg.cc/HW2nWwGj/botines.jpg')">
+                </div>
+					<div class="columna-info">
+						<h3>Botines Freedom F5</h3>
+						<p class="descripcion">La herramienta definitiva para cada jugador en la cancha. Disponibilidad en tres variantes especializadas de alto agarre: Modelos Futsal ($45.000) ideales para parquet, Papi Fútbol Sintético ($35.000) de máxima tracción, y la versión con Media Integrada ($43.000) para estabilidad absoluta. Curva de talles del 34 al 44.</p>
+						<div class="contenedor-precios-vertical">
+							<p class="precio">Desde $35.000</p>
+						</div>
+						<a href="https://wa.me/5492241415211?text=Hola!%20Quiero%20consultar%20talles%20de%20los%20botines%20Freedom" target="_blank" class="boton-wsp-vertical">Consultar Modelos y Talles</a>
+					</div>
+				</div>
+
+				<div class="fila-producto-3d invertida" id="combo" data-categoria="combos">
+					<div class="columna-imagen">
+						<img src="https://i.postimg.cc/SQ9g5fP7/comboinvernal-removebg-preview.png" class="imagen-producto-vertical" alt="Combo Invernal" onclick="abrirLightbox('https://i.postimg.cc/B6CS60Vg/promoinvernal.jpg')">
+                </div>
+					<div class="columna-info">
+						<h3>Combo Invernal Completo</h3>
+						<p class="descripcion">La combinación definitiva para ganarle a la temporada de invierno sin que te saque del partido. Este pack promocional de cierre de stock incluye: Una remera térmica de primera piel premium, guantes de alto aislamiento técnico y un par de medias oficiales de competencia Freedom.</p>
+						<div class="contenedor-precios-vertical">
+							<p class="precio-antes">$35.000</p>
+							<p class="precio">$29.000</p>
+						</div>
+						<a href="https://wa.me/5492241415211?text=Hola!%20Me%20interesa%20el%20Combo%20Invernal%20de%20%2429000" target="_blank" class="boton-wsp-vertical">Reservar Combo Completo</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="seccion-bloque" id="guia-talles">
+			<div class="titulo-seccion">Guía de Talles y Medidas</div>
+			<div class="seccion-talles">
+
+				<div class="columna-tabla">
+					<table class="tabla-medidas">
+						<thead>
+							<tr>
+								<th>Talle AR</th>
+								<th>Medida Plantilla</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<strong>34</strong>
+								</td>
+								<td>22.5 cm</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>35</strong>
+								</td>
+								<td>23.0 cm</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>36</strong>
+								</td>
+								<td>23.5 cm</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>37</strong>
+								</td>
+								<td>24.5 cm</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>38</strong>
+								</td>
+								<td>25.0 cm</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>39</strong>
+								</td>
+								<td>25.5 cm</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>40</strong>
+								</td>
+								<td>26.5 cm</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>41</strong>
+								</td>
+								<td>27.0 cm</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>42</strong>
+								</td>
+								<td>27.5 cm</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>43</strong>
+								</td>
+								<td>28.5 cm</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>44</strong>
+								</td>
+								<td>29.0 cm</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="columna-instrucciones">
+					<h4>📐 ¿Cómo saber tu talle ideal?</h4>
+					<ol class="lista-pasos">
+						<li>Colocá una hoja de papel en el piso blanca contra la pared.</li>
+						<li>Apoyá el pie descalzo sobre la hoja, manteniendo el talón firme contra la pared.</li>
+						<li>Con un lápiz en posición vertical, marcá el punto más largo de tu pie (donde termina el dedo gordo).</li>
+						<li>Medí con una regla los centímetros totales desde el borde del papel hasta tu marca y comparalos con nuestra tabla de talles.</li>
+					</ol>
+					<p style="margin: 15px 0 0 0; color: #888888; font-size: 0.9rem; line-height: 1.5; font-style: italic;">
+						💡 Tip: Si estás entre dos talles o vas a usar los botines con medias gruesas de competencia, te recomendamos elegir el talle más grande para mayor comodidad.
+					</p>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="seccion-bloque">
+			<div class="titulo-seccion">Información Clave para Clientes</div>
+			<div class="grid-info">
+				<div class="tarjeta-informativa">
+					<div>
+						<h4>💳 Medios de Pago</h4>
+						<p>Aceptamos transferencias bancarias, Mercado Pago (dinero en cuenta o tarjetas mediante link de pago) y efectivo billete al momento de realizar la entrega final.</p>
+					</div>
+					<button class="boton-copiar" id="btnCopiar" onclick="copiarAlias()">
+						📋 Copiar Alias Mercado Pago
+					</button>
+				</div>
+				<div class="tarjeta-informativa">
+					<h4>🔄 Cambios y Talles</h4>
+					<p>Si el talle de tus botines o indumentaria no te va como esperabas, realizamos el cambio sin drama por el talle que te corresponda en la siguiente tanda de pedidos.</p>
+				</div>
+				<div class="tarjeta-informativa">
+					<h4>📍 Entregas Directas</h4>
+					<p>Hacemos entregas a coordinar directamente en puntos clave de General Belgrano. Comprás de forma online y recibís de mano en mano en tu localidad.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="seccion-bloque">
+			<div class="titulo-seccion">Preguntas Frecuentes</div>
+			<div class="contenedor-faq">
+
+				<details class="item-faq">
+					<summary>¿Cuánto tardan en llegar los productos bajo encargo?</summary>
+					<p>Los pedidos llegan a General Belgrano de manera semanal los días martes y miércoles. Una vez que el producto arriba a la localidad, nos ponemos en contacto con vos al instante para coordinar el punto de entrega mano a mano.</p>
+				</details>
+
+				<details class="item-faq">
+					<summary>¿Tienen local físico o showroom para ir a probarse?</summary>
+					<p>No contamos con local a la calle. Manejamos un formato 100% online que nos permite ofrecer precios mucho más competitivos. Podés revisar detalladamente los modelos acá y coordinar de forma directa la entrega en los puntos clave del pueblo.</p>
+				</details>
+
+				<details class="item-faq">
+					<summary>¿Cómo hago si el talle que encargué no me queda bien?</summary>
+					<p>¡No te preocupes! Los cambios se realizan sin ningún tipo de inconveniente. Si al probarte el calzado o indumentaria notás que necesitás otro talle, coordinamos para traértelo directo en la tanda de pedidos de la semana siguiente.</p>
+				</details>
+
+				<details class="item-faq">
+					<summary>¿Es necesario abonar la totalidad del producto para reservar?</summary>
+					<p>No, para los productos que son bajo pedido podés congelar el valor y asegurar tu talle abonando una seña inicial equivalente al 50%. El saldo restante lo pagás en efectivo o transferencia en el momento exacto en que te entregamos el producto.</p>
+				</details>
+
+			</div>
+		</div>
+
+		<div class="modal-lightbox" id="panelLightbox" onclick="cerrarLightbox()">
+			<span class="boton-cerrar-modal">&times;</span>
+			<img class="imagen-modal-gigante" id="imagenGigante" src="" alt="Flyer Promocional">
+    </div>
+
+		<footer>
+			<p>
+				Instagram: <a href="https://instagram.com/gb_botines" target="_blank">@gb_botines</a> | WhatsApp: 2241.41.5211
+			</p>
+			<p style="font-size: 0.8rem; margin-top: 12px; color: #444; letter-spacing: 2px;">CALIDAD | RENDIMIENTO | CONFIANZA</p>
+		</footer>
+
+		<script>
+			// FUNCIÓN DE FILTRADO INTERACTIVO
+			function filtrarCategoria(categoria, botonSeleccionado) {
+			// Cambiar estado activo de los botones
+			const botones = document.querySelectorAll('.btn-filtro');
+			botones.forEach(btn => btn.classList.remove('activo'));
+			botonSeleccionado.classList.add('activo');
+
+			// Filtrar las tarjetas de productos
+			const productos = document.querySelectorAll('.fila-producto-3d');
+			productos.forEach(producto => {
+			const catProducto = producto.getAttribute('data-categoria');
+			if (categoria === 'todos' || catProducto === categoria) {
+			producto.classList.remove('oculto');
+			} else {
+			producto.classList.add('oculto');
+			}
+			});
+			}
+
+			function copiarAlias() {
+			const aliasReal = "gb.botines.mp";
+			navigator.clipboard.writeText(aliasReal).then(() => {
+			const boton = document.getElementById("btnCopiar");
+			boton.classList.add("copiado");
+			boton.innerText = "✅ ¡Alias Copiado!";
+			setTimeout(() => {
+			boton.classList.remove("copiado");
+			boton.innerHTML = "📋 Copiar Alias Mercado Pago";
+			}, 2000);
+			}).catch(err => {
+			console.error("Error al copiar: ", err);
+			});
+			}
+
+			function abrirLightbox(rutaFlyer) {
+			const lightbox = document.getElementById("panelLightbox");
+			const imgGigante = document.getElementById("imagenGigante");
+
+			imgGigante.src = rutaFlyer;
+			lightbox.classList.add("activo");
+			}
+
+			function cerrarLightbox() {
+			const lightbox = document.getElementById("panelLightbox");
+			lightbox.classList.remove("activo");
+			}
+		</script>
+
+	</body>
+</html>
